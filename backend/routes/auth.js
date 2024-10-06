@@ -14,9 +14,7 @@ router.post('/register', async (req, res) => {
 
         user = new User({ username, password });
         await user.save();
-        console.log('created')
         const token = jwt.sign({ id: user._id }, 'jwtSecret', { expiresIn: 3600 });
-        console.log('created key')
         res.json({ token });
     } catch (err) {
         res.status(500).json({message: err});
